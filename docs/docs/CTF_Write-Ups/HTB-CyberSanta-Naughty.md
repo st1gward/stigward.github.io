@@ -29,14 +29,15 @@ binary is dynamically linked.
 
 ### Challenge Binary Functionality
 Now that we know what protections are in place, lets check out the binary's functionality.
-Running it, we see that it asks for our firstname, last name, age, and what gift we want.
+Running it, we see that it asks for our first name, last name, age, and what gift we want.
 
 
 ![checksec_file](naughty_list_img/functionality.png)
 
 
 ### Vulnerability
-Reversing here isn't really needed, as we could just manually fuzz each input.
+Reversing here isn't really needed, as we could just manually fuzz each input (which is the strategy 
+I took during the CTF). However, for completeness of this write-up lets fire up Ghidra. 
 
 
-
+ 
