@@ -18,12 +18,12 @@ to obtain remote code execution and read the flag.
 
 Navigating to the site, we are greeted with a "Naughty Or Nice" list and the option to navigate to a sign-in page.
 
-![naughty_nice_list](./img/homepage.png)
+![naughty_nice_list](./naughty_or_nice_img/homepage.png)
 
 The sign-in page allows us to register for an account and use our credentials to login. Once logged in,
 we are redirected to the `/dashboard` endpoint. This endpoint displays a message saying that we "shall not pass".
 
-![unauth_dashboard](./img/unauth_dashboard.png)
+![unauth_dashboard](./naughty_or_nice_img/unauth_dashboard.png)
 
 A quick glance at the code in `/challenge/routes/index.js` shows the following for a the `/dashboard` endpoint:
 
@@ -89,11 +89,11 @@ This shows that if we are the `admin` user, then we will get routed to the Admin
 
 Once logged in, we get a JWT token.
 
-![jwt](./img/dashboard_cookie.png)
+![jwt](./naughty_or_nice_img/dashboard_cookie.png)
 
 Using [jwt.io](https://jwt.io) we can see in the decoded JWT that it is using `RS256` and the data section contains our username and a public key.
 
-![jwt_decode](img/jwt.png)
+![jwt_decode](naughty_or_nice_img/jwt.png)
 
 Back in the code base, we find `JWTHelper.js` in the `/challenge/helpers/` directory. It contains the code to both create and verify the JWT tokens the web-app uses. 
 
@@ -182,17 +182,17 @@ key = jwt.sign(data, publicKey, { algorithm:'HS256' })
 console.log(key)
 ```
 
-![admin_jwt](img/admin_jwt.png)
+![admin_jwt](naughty_or_nice_img/admin_jwt.png)
 
 If we decode our new JWT, we now see the following:
-![admin_decode](img/admin_decode.png)
+![admin_decode](naughty_or_nice_img/admin_decode.png)
 
 Go back to the web-app, and set our cookie to the new JWT.
 
-![new_jwt](img/set_cookie.png)
+![new_jwt](naughty_or_nice_img/set_cookie.png)
 
 Refresh, and we are in the `admin` dashboard!
-![admin_dash](img/admin_dashboard.png)
+![admin_dash](naughty_or_nice_img/admin_dashboard.png)
 
 ## Getting The Flag
 
@@ -251,11 +251,11 @@ JavaScript, which immediately makes me think this might be some sort of template
 
 First, we edit one of the items to contain `{{7*7}}`.
 
-![7_7](img/test_payload.png)
+![7_7](naughty_or_nice_img/test_payload.png)
 
 Navigating back to the homepage, we see that the our `{{7*7}}` payload renders as `49`, confirming that we have found a Server Side Template Injection!
 
-![49](img/49.png)
+![49](naughty_or_nice_img/49.png)
 
 If we continue to poke around on Google, we find some research has already been done on SSTI within Nunjucks. Nunjucks template code runs in a sandbox, so in order to get RCE we 
 need to break out of that sandbox and access the underlying OS. If you are interested in how this sandbox escape works, checkout the pre-existing research that I used as a reference during this challenge - 
@@ -276,23 +276,11 @@ First, we run
 {{range.constructor("return global.process.mainModule.require('child_process').execSync('ls /')")()}}
 ```
 
-![ls](img/ls.png)
+![ls](naughty_or_nice_img/ls.png)
 
 We see the flag here, and we can change the payload to `cat` it out!
 
-![see_flag](img/see_flag.png)
-![flag](img/flag.png)
-![flag](img/flag_contents.png)
-
-   
-
-
-
-
-    
-
-
-
-
-
+![see_flag](naughty_or_nice_img/see_flag.png)
+![flag](naughty_or_nice_img/flag.png)
+![flag](naughty_or_nice_img/flag_contents.png)
 
