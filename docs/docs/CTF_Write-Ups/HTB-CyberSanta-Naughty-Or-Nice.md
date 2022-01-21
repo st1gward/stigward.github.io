@@ -5,7 +5,7 @@ tags:
   - SSTI
 ---
 
-# Naughty Or Nice Web Challenge
+# Naughty Or Nice Web Challenge - JWT Confusion and SSTI
 
 ## TL;DR:
 
