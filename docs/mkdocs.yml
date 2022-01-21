@@ -1,0 +1,28 @@
+site_name: Stigward's Blog 
+site_author: Stigward <jmaginnes@gmail.com>
+copyright: Copyright 2022 Stigward
+plugins:
+  - search
+  - tags 
+markdown_extensions:
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+      # Resource for icons: https://squidfunk.github.io/mkdocs-material/getting-started/#icons
+  - meta
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - footnotes
+  - codehilite
+  - markdown_include.include:
+      base_path: docs
+theme:
+  name: material 
+  language: en # The language your site is written in
+  palette:
+    scheme: slate
+    primary: 'deep orange' # Used as the main color for the site top bar,
+                          # links, etc...
+    accent: 'deep orange' # Used as the highlight color for the site
+                             # your tab to the user
