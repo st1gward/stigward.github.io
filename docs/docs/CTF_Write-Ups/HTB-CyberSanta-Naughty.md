@@ -7,7 +7,6 @@ tags:
 ---
 
 # Naughty List Pwn Challenge
-
 ## TL;DR;
 Getting the flag in this challenge involves exploiting a stack based buffer
 overflow and defeating ASLR and DEP to get code execution. We use a 
