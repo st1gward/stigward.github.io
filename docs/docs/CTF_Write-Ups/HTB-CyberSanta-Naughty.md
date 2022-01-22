@@ -39,5 +39,22 @@ Running it, we see that it asks for our first name, last name, age, and what gif
 Reversing here isn't really needed, as we could just manually fuzz each input (which is the strategy 
 I took during the CTF). However, for completeness of this write-up lets fire up Ghidra. 
 
+We can see that the main function controls the flow of the program. There is an 
+individual function for each respective step described above. 
 
- 
+![main](naughty_list_img/main.png)
+
+Going through the functions, We notice that there is a potential 
+vulnerability in `get_descr()`. The function has a character buffer of size 32, 
+but calls `read` with  a length of 960, leading to a standard buffer overflow.
+
+![vuln](naughty_list_img/ghidra.png)
+
+We can confirm by providing a long string (in this case 80 'A's) to the description, 
+which results in a `segfault` as we would expect.
+
+
+![segfault](naughty_list_img/segfault.png)
+
+## Exploitation:
+
