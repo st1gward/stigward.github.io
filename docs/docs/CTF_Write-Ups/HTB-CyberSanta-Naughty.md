@@ -7,7 +7,7 @@ tags:
 ---
 
 # Naughty List Pwn Challenge
-## TL;DR;
+## TL;DR:
 Getting the flag in this challenge involves exploiting a stack based buffer
 overflow and defeating ASLR and DEP to get code execution. We use a 
 well established technique of leaking `puts@GOT` to get the base address of `libc`. 
@@ -56,4 +56,18 @@ which results in a `segfault` as we would expect.
 ![segfault](naughty_list_img/segfault.png)
 
 ## Exploitation:
+To exploit this vulnerability, we are going to use the well-known Python framework, [pwntools](https://docs.pwntools.com/en/stable/). 
+We can get started with the following boiler plate code which will identify and run our challenge binary. 
+
+```python
+from pwn import *
+elf = ELF('./naughty_list') 
+libc = ELF('./libc.so.6')
+p = elf.process()
+```
+
+Before moving on with our exploitation script, it is worth figuring out what amount of padding we need to send to the binary in order to reach the saved
+return address we want to overwrite. There are plenty of ways to do this, but I tend to default to the simplist: using GDB and doing it manually.
+
+
 
